@@ -1030,6 +1030,14 @@ define('skylark-domx-query/query',[
         $.fn.enableSelection = function() {
             return this.off( ".ui-disableSelection" );
         };
+
+        $.fn.reflow = function() {
+            return noder.flow(this[0]);
+        };
+
+        $.fn.isBlockNode = function() {
+            return noder.isBlockNode(this[0]);
+        };
        
 
     })(query);
