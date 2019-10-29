@@ -3,9 +3,8 @@ define([
     "skylark-langx/langx",
     "skylark-domx-noder",
     "skylark-domx-data",
-    "skylark-domx-finder",
-    "skylark-domx-scripter"
-], function(skylark, langx, noder, datax, finder, scripter) {
+    "skylark-domx-finder"
+], function(skylark, langx, noder, datax, finder) {
     var some = Array.prototype.some,
         push = Array.prototype.push,
         every = Array.prototype.every,
@@ -527,8 +526,6 @@ define([
             nextAll: wrapper_selector(finder.nextSiblings, finder),
 
             siblings: wrapper_selector(finder.siblings, finder),
-
-            html: wrapper_value(scripter.html, scripter, scripter.html),
 
             text: wrapper_value(datax.text, datax, datax.text),
 
