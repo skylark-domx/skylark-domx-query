@@ -2,9 +2,8 @@ define([
     "skylark-langx/skylark",
     "skylark-langx/langx",
     "skylark-domx-noder",
-    "skylark-domx-data",
     "skylark-domx-finder"
-], function(skylark, langx, noder, datax, finder) {
+], function(skylark, langx, noder, finder) {
     var some = Array.prototype.some,
         push = Array.prototype.push,
         every = Array.prototype.every,
@@ -526,22 +525,6 @@ define([
             nextAll: wrapper_selector(finder.nextSiblings, finder),
 
             siblings: wrapper_selector(finder.siblings, finder),
-
-            text: wrapper_value(datax.text, datax, datax.text),
-
-            attr: wrapper_name_value(datax.attr, datax, datax.attr),
-
-            removeAttr: wrapper_every_act(datax.removeAttr, datax),
-
-            prop: wrapper_name_value(datax.prop, datax, datax.prop),
-
-            removeProp: wrapper_every_act(datax.removeProp, datax),
-
-            data: wrapper_name_value(datax.data, datax, datax.data),
-
-            removeData: wrapper_every_act(datax.removeData, datax),
-
-            val: wrapper_value(datax.val, datax, datax.val),
 
             index: function(elem) {
                 if (elem) {
