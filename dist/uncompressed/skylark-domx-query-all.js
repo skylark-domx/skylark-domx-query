@@ -9330,7 +9330,7 @@ define('skylark-domx-query/query',[
     "skylark-domx-styler",
     "skylark-domx-fx",
     "skylark-domx-scripter"
-], function(skylark, langx, noder, datax, eventer, finder, geom, styler, fx,scripter) {
+], function(skylark, langx, noder, datax, eventer,  finder, geom, styler, fx,scripter) {
     var some = Array.prototype.some,
         push = Array.prototype.push,
         every = Array.prototype.every,
@@ -10142,6 +10142,7 @@ define('skylark-domx-query/query',[
                 $( this[ 0 ].ownerDocument || document ) :
                 scrollParent;
         };
+
     })(query);
 
 
@@ -10271,6 +10272,9 @@ define('skylark-domx-query/query',[
         $.fn.isBlockNode = function() {
             return noder.isBlockNode(this[0]);
         };
+
+
+
        
 
     })(query);
@@ -10284,6 +10288,20 @@ define('skylark-domx-query/query',[
             returnValue = plugins.instantiate.apply(self,[this,name].concat(args));
         });
         return returnValue;
+    };
+
+
+    query.wraps = {
+        wrapper_node_operation,
+        wrapper_map,
+        wrapper_value,
+        wrapper_selector,
+        wrapper_some_chk,
+        wrapper_selector_until,
+        wrapper_every_act_firstArgFunc,
+        wrapper_every_act,
+        wrapper_name_value
+
     };
 
     return skylark.attach("domx.query", query);
