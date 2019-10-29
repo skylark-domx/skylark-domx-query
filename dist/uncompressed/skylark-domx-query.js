@@ -91,10 +91,9 @@ define('skylark-domx-query/query',[
     "skylark-langx/langx",
     "skylark-domx-noder",
     "skylark-domx-data",
-    "skylark-domx-eventer",
     "skylark-domx-finder",
     "skylark-domx-scripter"
-], function(skylark, langx, noder, datax, eventer,  finder, scripter) {
+], function(skylark, langx, noder, datax, finder, scripter) {
     var some = Array.prototype.some,
         push = Array.prototype.push,
         every = Array.prototype.every,
@@ -357,7 +356,7 @@ define('skylark-domx-query/query',[
 
         var $ = function(selector, context) {
             if (isFunction(selector)) {
-                eventer.ready(function() {
+                $.ready(function() {
                     selector($);
                 });
             } else if (isQ(selector)) {
@@ -738,38 +737,6 @@ define('skylark-domx-query/query',[
     })();
 
     (function($) {
-        $.fn.on = wrapper_every_act(eventer.on, eventer);
-
-        $.fn.off = wrapper_every_act(eventer.off, eventer);
-
-        $.fn.trigger = wrapper_every_act(eventer.trigger, eventer);
-
-        ('focusin focusout focus blur load resize scroll unload click dblclick ' +
-            'mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave ' +
-            'change select keydown keypress keyup error transitionEnd').split(' ').forEach(function(event) {
-            $.fn[event] = function(data, callback) {
-                return (0 in arguments) ?
-                    this.on(event, data, callback) :
-                    this.trigger(event)
-            }
-        });
-
-        $.fn.one = function(event, selector, data, callback) {
-            if (!langx.isString(selector) && !langx.isFunction(callback)) {
-                callback = data;
-                data = selector;
-                selector = null;
-            }
-
-            if (langx.isFunction(data)) {
-                callback = data;
-                data = null;
-            }
-
-            return this.on(event, selector, data, callback, 1)
-        };
-
-
         $.fn.scrollParent = function( includeHidden ) {
             var position = this.css( "position" ),
                 excludeStaticParent = position === "absolute",
