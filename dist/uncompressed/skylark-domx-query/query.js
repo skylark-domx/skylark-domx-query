@@ -7,9 +7,8 @@ define([
     "skylark-domx-finder",
     "skylark-domx-geom",
     "skylark-domx-styler",
-    "skylark-domx-fx",
     "skylark-domx-scripter"
-], function(skylark, langx, noder, datax, eventer,  finder, geom, styler, fx,scripter) {
+], function(skylark, langx, noder, datax, eventer,  finder, geom, styler, scripter) {
     var some = Array.prototype.some,
         push = Array.prototype.push,
         every = Array.prototype.every,
@@ -510,7 +509,6 @@ define([
                 })
             },
 
-            hide: wrapper_every_act(fx.hide, fx),
 
             toggle: function(setting) {
                 return this.each(function() {
@@ -789,20 +787,6 @@ define([
             return this.on(event, selector, data, callback, 1)
         };
 
-        $.fn.animate = wrapper_every_act(fx.animate, fx);
-        $.fn.emulateTransitionEnd = wrapper_every_act(fx.emulateTransitionEnd, fx);
-
-        $.fn.show = wrapper_every_act(fx.show, fx);
-        $.fn.hide = wrapper_every_act(fx.hide, fx);
-        $.fn.toogle = wrapper_every_act(fx.toogle, fx);
-        $.fn.fadeTo = wrapper_every_act(fx.fadeTo, fx);
-        $.fn.fadeIn = wrapper_every_act(fx.fadeIn, fx);
-        $.fn.fadeOut = wrapper_every_act(fx.fadeOut, fx);
-        $.fn.fadeToggle = wrapper_every_act(fx.fadeToggle, fx);
-
-        $.fn.slideDown = wrapper_every_act(fx.slideDown, fx);
-        $.fn.slideToggle = wrapper_every_act(fx.slideToggle, fx);
-        $.fn.slideUp = wrapper_every_act(fx.slideUp, fx);
 
         $.fn.scrollParent = function( includeHidden ) {
             var position = this.css( "position" ),
@@ -951,9 +935,6 @@ define([
         $.fn.isBlockNode = function() {
             return noder.isBlockNode(this[0]);
         };
-
-
-
        
 
     })(query);
