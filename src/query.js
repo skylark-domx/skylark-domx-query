@@ -4,12 +4,13 @@ define([
     "skylark-domx-noder",
     "skylark-domx-data",
     "skylark-domx-eventer",
+    "skylark-domx-files",
     "skylark-domx-finder",
     "skylark-domx-geom",
     "skylark-domx-styler",
     "skylark-domx-fx",
     "skylark-domx-scripter"
-], function(skylark, langx, noder, datax, eventer, finder, geom, styler, fx,scripter) {
+], function(skylark, langx, noder, datax, eventer, files, finder, geom, styler, fx,scripter) {
     var some = Array.prototype.some,
         push = Array.prototype.push,
         every = Array.prototype.every,
@@ -821,6 +822,12 @@ define([
                 $( this[ 0 ].ownerDocument || document ) :
                 scrollParent;
         };
+
+
+        $.fn.pastezone = wrapper_every_act(files.pastezone, files);
+        $.fn.dropzone = wrapper_every_act(files.dropzone, files);
+        $.fn.picker = wrapper_every_act(files.picker, files);
+
     })(query);
 
 
@@ -950,6 +957,9 @@ define([
         $.fn.isBlockNode = function() {
             return noder.isBlockNode(this[0]);
         };
+
+
+
        
 
     })(query);
