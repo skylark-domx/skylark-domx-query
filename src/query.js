@@ -447,6 +447,8 @@ define([
 
             empty: wrapper_every_act(noder.empty, noder),
 
+            html: wrapper_every_act(noder.html, noder),
+
             // `pluck` is borrowed from Prototype.js
             pluck: function(property) {
                 return langx.map(this, function(el) {
