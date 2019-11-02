@@ -3509,7 +3509,7 @@ define('skylark-langx/langx',[
     "./strings",
     "./topic",
     "./types"
-], function(skylark,arrays,ArrayStore,aspect,async,datetimes,Deferred,Evented,funcs,hoster,klass,numbers,objects,tateful,strings,topic,types) {
+], function(skylark,arrays,ArrayStore,aspect,async,datetimes,Deferred,Evented,funcs,hoster,klass,numbers,objects,Stateful,strings,topic,types) {
     "use strict";
     var toString = {}.toString,
         concat = Array.prototype.concat,
@@ -3592,9 +3592,7 @@ define('skylark-langx/langx',[
         hoster : hoster,
 
         klass : klass,
-
-        Restful: Restful,
-        
+       
         Stateful: Stateful,
 
         topic : topic
@@ -4414,7 +4412,7 @@ define('skylark-domx-finder/finder',[
     "skylark-langx/langx",
     "skylark-domx-browser",
     "skylark-domx-noder"
-], function(skylark, langx, browser, noder, velm) {
+], function(skylark, langx, browser, noder) {
     var local = {},
         filter = Array.prototype.filter,
         slice = Array.prototype.slice,
@@ -5523,6 +5521,7 @@ define('skylark-domx-finder/finder',[
 define('skylark-domx-finder/main',[
 	"./finder"
 ],function(finder){
+
 	return finder;
 });
 define('skylark-domx-finder', ['skylark-domx-finder/main'], function (main) { return main; });
@@ -5572,6 +5571,23 @@ define('skylark-domx-query/query',[
 
         dasherize = langx.dasherize,
         children = finder.children;
+
+    function wrapper_node_operation(func, context, oldValueFunc) {
+        return function(html) {
+            var argType, nodes = langx.map(arguments, function(arg) {
+                argType = type(arg)
+                return argType == "function" || argType == "object" || argType == "array" || arg == null ?
+                    arg : noder.createFragment(arg)
+            });
+            if (nodes.length < 1) {
+                return this
+            }
+            this.each(function(idx) {
+                func.apply(context, [this, nodes, idx > 0]);
+            });
+            return this;
+        }
+    }
 
     function wrapper_map(func, context) {
         return function() {
@@ -6073,23 +6089,6 @@ define('skylark-domx-query/query',[
 
 
         var traverseNode = noder.traverse;
-
-        function wrapper_node_operation(func, context, oldValueFunc) {
-            return function(html) {
-                var argType, nodes = langx.map(arguments, function(arg) {
-                    argType = type(arg)
-                    return argType == "function" || argType == "object" || argType == "array" || arg == null ?
-                        arg : noder.createFragment(arg)
-                });
-                if (nodes.length < 1) {
-                    return this
-                }
-                this.each(function(idx) {
-                    func.apply(context, [this, nodes, idx > 0]);
-                });
-                return this;
-            }
-        }
 
 
         $.fn.after = wrapper_node_operation(noder.after, noder);
