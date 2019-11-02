@@ -447,7 +447,7 @@ define([
 
             empty: wrapper_every_act(noder.empty, noder),
 
-            html: wrapper_every_act(noder.html, noder),
+            html: wrapper_value(noder.html, noder),
 
             // `pluck` is borrowed from Prototype.js
             pluck: function(property) {
