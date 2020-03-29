@@ -148,8 +148,7 @@ define([
 
     function wrapper_name_value(func, context, oldValueFunc) {
         return function(name, value) {
-            var self = this,
-                params = slice.call(arguments);
+            var self = this;
 
             if (langx.isPlainObject(name) || langx.isDefined(value)) {
                 forEach.call(self, function(elem, idx) {
@@ -159,7 +158,7 @@ define([
                     } else {
                         newValue = value
                     }
-                    func.apply(context, [elem].concat(params));
+                    func.apply(context, [elem,name,newValue]);
                 });
                 return self;
             } else {
