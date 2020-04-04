@@ -5773,9 +5773,11 @@ define('skylark-domx-query/query',[
                 params = slice.call(arguments);
             var result = this.map(function(idx, elem) {
                 // if (elem.nodeType == 1) {
-                //if (elem.querySelector) {
+                if (elem.querySelector) {
                     return func.apply(context, last ? [elem] : [elem, selector]);
-                //}
+                } else {
+                    return [];
+                }
             });
             if (last && selector) {
                 return result.filter(selector);
@@ -5795,9 +5797,11 @@ define('skylark-domx-query/query',[
             //}
             var result = this.map(function(idx, elem) {
                 // if (elem.nodeType == 1) { // TODO
-                //if (elem.querySelector) {
+                if (elem.querySelector) {
                     return func.apply(context, last ? [elem, util] : [elem, selector, util]);
-                //}
+                } else {
+                    return [];
+                }
             });
             if (last && selector) {
                 return result.filter(selector);
@@ -5825,7 +5829,7 @@ define('skylark-domx-query/query',[
                 params = slice.call(arguments);
             forEach.call(self, function(elem, idx) {
                 var newArg1 = funcArg(elem, arg1, idx, oldValueFunc(elem));
-                func.apply(context, [elem, arg1].concat(params.slice(1)));
+                func.apply(context, [elem, newArg1].concat(params.slice(1)));
             });
             return self;
         }
