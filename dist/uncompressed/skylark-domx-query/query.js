@@ -285,6 +285,7 @@ define([
                 $.ready(function() {
                     selector($);
                 });
+                return rootQuery;
             } else if (isQ(selector)) {
                 return selector;
             } else {
@@ -293,7 +294,7 @@ define([
                 }
                 return init(selector, context);
             }
-        };
+        },rootQuery = $(document);
 
         $.fn = NodeList.prototype;
         langx.mixin($.fn, {

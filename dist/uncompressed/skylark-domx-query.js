@@ -373,6 +373,7 @@ define('skylark-domx-query/query',[
                 $.ready(function() {
                     selector($);
                 });
+                return rootQuery;
             } else if (isQ(selector)) {
                 return selector;
             } else {
@@ -381,7 +382,7 @@ define('skylark-domx-query/query',[
                 }
                 return init(selector, context);
             }
-        };
+        },rootQuery = $(document);
 
         $.fn = NodeList.prototype;
         langx.mixin($.fn, {
