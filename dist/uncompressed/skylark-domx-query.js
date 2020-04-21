@@ -190,11 +190,11 @@ define('skylark-domx-query/query',[
             //}
             var result = this.map(function(idx, elem) {
                 // if (elem.nodeType == 1) { // TODO
-                if (elem.querySelector) {
+                //if (elem.querySelector) {
                     return func.apply(context, last ? [elem, util] : [elem, selector, util]);
-                } else {
-                    return [];
-                }
+                //} else {
+                //    return [];
+                //}
             });
             if (last && selector) {
                 return result.filter(selector);
