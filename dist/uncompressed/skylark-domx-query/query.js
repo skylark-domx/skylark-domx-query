@@ -248,8 +248,6 @@ define([
                     if (!noder.isWindow(selector) && isArrayLike(selector)) {
                         // a dom node array is expected
                         nodes = selector;
-                        // a dom node array is expected
-                        nodes = selector;
                     } else {
                         // a dom node is expected
                         nodes = [selector];
