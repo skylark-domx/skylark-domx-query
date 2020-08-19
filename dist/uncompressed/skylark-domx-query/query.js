@@ -198,6 +198,7 @@ define([
         }
     }
 
+
     var NodeList = langx.klass({
         klassName: "SkNodeList",
         init: function(selector, context) {
@@ -244,7 +245,9 @@ define([
                         nodes = finder.descendants(context, selector);
                     }
                 } else {
-                    if (selector !== window && isArrayLike(selector)) {
+                    if (!noder.isWindow(selector) && isArrayLike(selector)) {
+                        // a dom node array is expected
+                        nodes = selector;
                         // a dom node array is expected
                         nodes = selector;
                     } else {

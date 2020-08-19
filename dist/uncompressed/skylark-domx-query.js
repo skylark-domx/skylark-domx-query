@@ -75,7 +75,7 @@
   factory(define,require);
 
   if (!isAmd) {
-    var skylarkjs = require("skylark-langx/skylark");
+    var skylarkjs = require("skylark-langx-ns");
 
     if (isCmd) {
       module.exports = skylarkjs;
@@ -286,6 +286,7 @@ define('skylark-domx-query/query',[
         }
     }
 
+
     var NodeList = langx.klass({
         klassName: "SkNodeList",
         init: function(selector, context) {
@@ -332,7 +333,9 @@ define('skylark-domx-query/query',[
                         nodes = finder.descendants(context, selector);
                     }
                 } else {
-                    if (selector !== window && isArrayLike(selector)) {
+                    if (!noder.isWindow(selector) && isArrayLike(selector)) {
+                        // a dom node array is expected
+                        nodes = selector;
                         // a dom node array is expected
                         nodes = selector;
                     } else {
