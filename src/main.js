@@ -3,6 +3,8 @@ define([
 	"skylark-domx-styler"
 ],function($,styler){
 
+    $.fn.disabled = $.wraps.wrapper_name_value(styler.disabled, styler);
+
     $.fn.style = $.wraps.wrapper_name_value(styler.css, styler);
 
     $.fn.css = $.wraps.wrapper_name_value(styler.css, styler);
