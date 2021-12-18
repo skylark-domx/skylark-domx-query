@@ -149,14 +149,18 @@ define('skylark-domx-query/query',[
         }
     }
 
-    function wrapper_map(func, context) {
+    function wrapper_map(func, context,mapValue) {
         return function() {
             var self = this,
                 params = slice.call(arguments);
             var result = langx.map(self, function(elem, idx) {
                 return func.apply(context, [elem].concat(params));
             });
-            return query(uniq(result));
+            if (mapValue) {
+                return result;
+            } else {
+                    return query(uniq(result));
+            }
         }
     }
 
