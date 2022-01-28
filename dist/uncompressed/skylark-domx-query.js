@@ -149,18 +149,14 @@ define('skylark-domx-query/query',[
         }
     }
 
-    function wrapper_map(func, context,mapValue) {
+    function wrapper_map(func, context) {
         return function() {
             var self = this,
                 params = slice.call(arguments);
             var result = langx.map(self, function(elem, idx) {
                 return func.apply(context, [elem].concat(params));
             });
-            if (mapValue) {
-                return result;
-            } else {
-                    return query(uniq(result));
-            }
+            return query(uniq(result));
         }
     }
 
@@ -169,12 +165,12 @@ define('skylark-domx-query/query',[
             var self = this,
                 params = slice.call(arguments);
             var result = this.map(function(idx, elem) {
-                // if (elem.nodeType == 1) {
-                if (elem.querySelector) {
+                ///// if (elem.nodeType == 1) {
+                ///if (elem.querySelector) { //TO: lwf
                     return func.apply(context, last ? [elem] : [elem, selector]);
-                } else {
+                ///} else {
                     return [];
-                }
+                ///}
             });
             if (last && selector) {
                 return result.filter(selector);
@@ -922,7 +918,7 @@ define('skylark-domx-query/query',[
         };
 
         $.fn.reflow = function() {
-            return noder.reflow(this[0]);
+            return noder.flow(this[0]);
         };
 
         $.fn.isBlockNode = function() {
